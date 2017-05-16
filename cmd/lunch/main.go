@@ -1,10 +1,10 @@
 package main
 
 import (
+	"flag"
 	"fmt"
 	"os"
-	"flag"
-	
+
 	"github.com/umayr/lunch"
 )
 
