@@ -9,17 +9,6 @@ import (
 	"github.com/umayr/lunch/endpoint"
 )
 
-var c *conf.Conf
-
-func init() {
-	var err error
-
-	c, err = conf.Get()
-	if err != nil {
-		panic(err)
-	}
-}
-
 type response struct {
 	Data []struct {
 		ID   int `json:"id"`
@@ -81,7 +70,12 @@ func parse(raw []byte) (Lunches, error) {
 	return l, nil
 }
 
-func Find() (Lunches, error) {
+func Find(authenticate bool) (Lunches, error) {
+	c, err := conf.Get(authenticate)
+	if err != nil {
+		return nil, err
+	}
+
 	raw, err := endpoint.Lunch(c.Token)
 	if err != nil {
 		switch e := err.(type) {
@@ -106,8 +100,8 @@ func Find() (Lunches, error) {
 	return parse(raw)
 }
 
-func Today() (Item, error) {
-	l, err := Find()
+func Today(authenticate bool) (Item, error) {
+	l, err := Find(authenticate)
 	if err != nil {
 		return Item{}, err
 	}
