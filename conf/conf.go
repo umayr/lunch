@@ -96,8 +96,12 @@ func Update() (*Conf, error) {
 	return &c, nil
 }
 
-func Get() (*Conf, error) {
+func Get(authenticate bool) (*Conf, error) {
 	if _, err := os.Stat(fmt.Sprintf("%s/.lunchrc", homedir())); os.IsNotExist(err) {
+		if !authenticate {
+			return nil, fmt.Errorf("no configuration found")
+		}
+
 		username, password, err := credentials()
 		if err != nil {
 			return nil, err
