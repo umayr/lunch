@@ -20,6 +20,8 @@ You can also download pre-compiled binaries from [here](https://github.com/umayr
 You might also want to set up a cron to notify you about the lunch menu a bit before lunch with something like this:
 ```bash
   λ notify-send Lunch (echo -n "You have" (lunch) "in lunch today.")
+  λ # in case you want to set up a shortcut
+  λ bash -c "lunch -bare 2>&1 | xargs -d '*' notify-send 'Lunch'"
 ```
 which could result in:
 
