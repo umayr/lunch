@@ -24,9 +24,9 @@ ifdef GLIDE
 else
 	@echo "Glide is not installed."
 	@echo 'Reflex is not installed'
-    @echo 'Installing Glide...'
-    @go get github.com/Masterminds/glide
-    @glide install
+	@echo 'Installing Glide...'
+	@go get github.com/Masterminds/glide
+	@glide install
 endif
 
 clean:
