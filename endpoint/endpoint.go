@@ -7,7 +7,7 @@ import (
 	"net/http"
 )
 
-const baseURL = "http://cogs.10pearls.com/cogsapi/api"
+const baseURL = "https://cogs.10pearls.com/cogsapi/api"
 
 type HttpError struct {
 	Code    int
